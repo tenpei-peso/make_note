@@ -1,58 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:markdown_toolbar/markdown_toolbar.dart';
+import 'package:flutter_make_note/presentasion/page/top_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() {
-  runApp(const MyHomePage());
+void main() async {
+  runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Markdown Toolbar Example'),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: <Widget>[
-
-              ElevatedButton(
-                onPressed: () {
-                  null;
-                },
-                child: Text('送信'),
-              )
-            ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            null;
-          },
-          child: const Icon(Icons.add),
-        ),
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      home: const TopPage(),
     );
   }
 }
