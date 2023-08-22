@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "275935112072",
+    "project_id": "makenoteapp-27975",
+    "storage_bucket": "makenoteapp-27975.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275935112072:android:0e4b257cf8b0fde8cc283d",
+        "android_client_info": {
+          "package_name": "com.example.flutter_make_note"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275935112072-6131enfuqfam28ljsf8c2kn5kjba7g5d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAroqhasB7iOqHkBf5Wk3SHHPezqBomn3A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275935112072-6131enfuqfam28ljsf8c2kn5kjba7g5d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
