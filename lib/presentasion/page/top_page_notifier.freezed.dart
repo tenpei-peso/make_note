@@ -16,8 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TopPageState {
-  bool get isLoading => throw _privateConstructorUsedError;
+  bool get isTopPageLoading => throw _privateConstructorUsedError;
   List<XFile> get fileDataList => throw _privateConstructorUsedError;
+  String get detectionText => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TopPageStateCopyWith<TopPageState> get copyWith =>
@@ -30,7 +31,8 @@ abstract class $TopPageStateCopyWith<$Res> {
           TopPageState value, $Res Function(TopPageState) then) =
       _$TopPageStateCopyWithImpl<$Res, TopPageState>;
   @useResult
-  $Res call({bool isLoading, List<XFile> fileDataList});
+  $Res call(
+      {bool isTopPageLoading, List<XFile> fileDataList, String detectionText});
 }
 
 /// @nodoc
@@ -46,18 +48,23 @@ class _$TopPageStateCopyWithImpl<$Res, $Val extends TopPageState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoading = null,
+    Object? isTopPageLoading = null,
     Object? fileDataList = null,
+    Object? detectionText = null,
   }) {
     return _then(_value.copyWith(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
+      isTopPageLoading: null == isTopPageLoading
+          ? _value.isTopPageLoading
+          : isTopPageLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       fileDataList: null == fileDataList
           ? _value.fileDataList
           : fileDataList // ignore: cast_nullable_to_non_nullable
               as List<XFile>,
+      detectionText: null == detectionText
+          ? _value.detectionText
+          : detectionText // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -70,7 +77,8 @@ abstract class _$$_TopPageStateCopyWith<$Res>
       __$$_TopPageStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, List<XFile> fileDataList});
+  $Res call(
+      {bool isTopPageLoading, List<XFile> fileDataList, String detectionText});
 }
 
 /// @nodoc
@@ -84,18 +92,23 @@ class __$$_TopPageStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isLoading = null,
+    Object? isTopPageLoading = null,
     Object? fileDataList = null,
+    Object? detectionText = null,
   }) {
     return _then(_$_TopPageState(
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
+      isTopPageLoading: null == isTopPageLoading
+          ? _value.isTopPageLoading
+          : isTopPageLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       fileDataList: null == fileDataList
           ? _value._fileDataList
           : fileDataList // ignore: cast_nullable_to_non_nullable
               as List<XFile>,
+      detectionText: null == detectionText
+          ? _value.detectionText
+          : detectionText // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -104,12 +117,14 @@ class __$$_TopPageStateCopyWithImpl<$Res>
 
 class _$_TopPageState implements _TopPageState {
   _$_TopPageState(
-      {this.isLoading = false, final List<XFile> fileDataList = const []})
+      {this.isTopPageLoading = false,
+      final List<XFile> fileDataList = const [],
+      this.detectionText = ''})
       : _fileDataList = fileDataList;
 
   @override
   @JsonKey()
-  final bool isLoading;
+  final bool isTopPageLoading;
   final List<XFile> _fileDataList;
   @override
   @JsonKey()
@@ -120,8 +135,12 @@ class _$_TopPageState implements _TopPageState {
   }
 
   @override
+  @JsonKey()
+  final String detectionText;
+
+  @override
   String toString() {
-    return 'TopPageState(isLoading: $isLoading, fileDataList: $fileDataList)';
+    return 'TopPageState(isTopPageLoading: $isTopPageLoading, fileDataList: $fileDataList, detectionText: $detectionText)';
   }
 
   @override
@@ -129,15 +148,17 @@ class _$_TopPageState implements _TopPageState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_TopPageState &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
+            (identical(other.isTopPageLoading, isTopPageLoading) ||
+                other.isTopPageLoading == isTopPageLoading) &&
             const DeepCollectionEquality()
-                .equals(other._fileDataList, _fileDataList));
+                .equals(other._fileDataList, _fileDataList) &&
+            (identical(other.detectionText, detectionText) ||
+                other.detectionText == detectionText));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading,
-      const DeepCollectionEquality().hash(_fileDataList));
+  int get hashCode => Object.hash(runtimeType, isTopPageLoading,
+      const DeepCollectionEquality().hash(_fileDataList), detectionText);
 
   @JsonKey(ignore: true)
   @override
@@ -148,12 +169,16 @@ class _$_TopPageState implements _TopPageState {
 
 abstract class _TopPageState implements TopPageState {
   factory _TopPageState(
-      {final bool isLoading, final List<XFile> fileDataList}) = _$_TopPageState;
+      {final bool isTopPageLoading,
+      final List<XFile> fileDataList,
+      final String detectionText}) = _$_TopPageState;
 
   @override
-  bool get isLoading;
+  bool get isTopPageLoading;
   @override
   List<XFile> get fileDataList;
+  @override
+  String get detectionText;
   @override
   @JsonKey(ignore: true)
   _$$_TopPageStateCopyWith<_$_TopPageState> get copyWith =>

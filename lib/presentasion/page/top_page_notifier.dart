@@ -2,8 +2,8 @@ import 'dart:typed_data';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 part 'top_page_notifier.freezed.dart';
@@ -12,8 +12,9 @@ part 'top_page_notifier.freezed.dart';
 @freezed
 class TopPageState with _$TopPageState {
   factory TopPageState({
-    @Default(false) bool isLoading,
+    @Default(false) bool isTopPageLoading,
     @Default([]) List<XFile> fileDataList,
+    @Default('') String detectionText,
   }) = _TopPageState;
 }
 
@@ -23,11 +24,16 @@ final topPageProvider =
 });
 
 class TopPageNotifier extends StateNotifier<TopPageState> {
-  TopPageNotifier() : super(TopPageState());
+  TopPageNotifier() : super(TopPageState()) {
+    _init();
+  }
 
   final imagePicker = ImagePicker();
   final auth = FirebaseAuth.instance;
-  final functions = FirebaseFunctions.instance;
+
+  _init() {
+    // 任意の初期化処理
+  }
 
   // ギャラリーから写真を取得するメソッド
   Future<void> getImageFromGarally() async {
@@ -41,18 +47,24 @@ class TopPageNotifier extends StateNotifier<TopPageState> {
     print(state.fileDataList);
   }
 
-  // Future<void> textDetection(XFile fileData) async {
-  //   // ユーザー認証がされていない場合、匿名認証を行う
-  //   Uint8List uint8listData = await fileData.readAsBytes();
-  //   if (auth.currentUser == null) {
-  //     await auth.signInAnonymously();
-  //   }
-  //   print(fileData.path);
-  //
-  //   // 画像データをテキスト検出する
-  //   final result = await functions.httpsCallable('textDetection').call(uint8listData);
-  //   print(result);
-  // }
+  Future<void> textDetection(XFile fileData) async {
+    // XFileをInputImageに変換
+    InputImage inputImage = InputImage.fromFilePath(fileData.path);
+    final textRecognizer = TextRecognizer(script: TextRecognitionScript.japanese);
+
+    //画像解析して文字抽出
+    final RecognizedText recognizedText = await textRecognizer.processImage(inputImage);
+    String text = recognizedText.text;
+
+    if(text.isEmpty) {
+      return;
+    }
+
+    state = state.copyWith(
+      detectionText : text,
+    );
+
+  }
 
 
 }
