@@ -12,6 +12,12 @@ class MakeNotePage extends ConsumerWidget {
     final openAiNotifier = ref.watch(openAiNotifierProvider.notifier);
     final aiText =
     ref.watch(openAiNotifierProvider.select((state) => state.openAiText)) ?? '';
+    final isLoading =
+        ref.watch(openAiNotifierProvider.select((state) => state.isLoading));
+
+    if(isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
 
     return Scaffold(
       appBar: AppBar(

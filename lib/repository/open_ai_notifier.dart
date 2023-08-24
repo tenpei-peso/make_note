@@ -10,6 +10,7 @@ part 'open_ai_notifier.freezed.dart';
 class OpenAiState with _$OpenAiState {
   factory OpenAiState({
     @Default('') String openAiText,
+    @Default(false) bool isLoading
   }) = _OpenAiState;
 }
 
@@ -32,6 +33,7 @@ class OpenAiNotifier extends StateNotifier<OpenAiState> {
   }
 
   Future<void> sendMessage() async {
+    state = state.copyWith(isLoading: true);
     final detectionText =
     ref.watch(topPageProvider.select((state) => state.detectionText));
     // メッセージをuserロールでモデル化
@@ -39,12 +41,15 @@ class OpenAiNotifier extends StateNotifier<OpenAiState> {
       model: "gpt-3.5-turbo",
       messages: [
         OpenAIChatCompletionChoiceMessageModel(
-          content: "${detectionText}\n 上記の文章をわかりやすく整理したMarkdownで出力 \n # 出力フォーマット",
+          content: "${detectionText}\n 上記の文章をわかりやすく整理し、また内容を補完してMarkdownで出力 \n 重要単語は強調する \n 見出しや目次も作成する \n 箇条書きを使う\n# 出力フォーマット",
           role: OpenAIChatMessageRole.user,
         ),
       ],
     );
     OpenAIChatCompletionChoiceMessageModel text = chatCompletion.choices.first.message;
-    state = state.copyWith(openAiText: text.content);
+    state = state.copyWith(
+        openAiText: text.content,
+        isLoading: false,
+    );
   }
 }

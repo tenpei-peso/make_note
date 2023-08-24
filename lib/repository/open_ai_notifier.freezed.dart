@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$OpenAiState {
   String get openAiText => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OpenAiStateCopyWith<OpenAiState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $OpenAiStateCopyWith<$Res> {
           OpenAiState value, $Res Function(OpenAiState) then) =
       _$OpenAiStateCopyWithImpl<$Res, OpenAiState>;
   @useResult
-  $Res call({String openAiText});
+  $Res call({String openAiText, bool isLoading});
 }
 
 /// @nodoc
@@ -46,12 +47,17 @@ class _$OpenAiStateCopyWithImpl<$Res, $Val extends OpenAiState>
   @override
   $Res call({
     Object? openAiText = null,
+    Object? isLoading = null,
   }) {
     return _then(_value.copyWith(
       openAiText: null == openAiText
           ? _value.openAiText
           : openAiText // ignore: cast_nullable_to_non_nullable
               as String,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -64,7 +70,7 @@ abstract class _$$_OpenAiStateCopyWith<$Res>
       __$$_OpenAiStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String openAiText});
+  $Res call({String openAiText, bool isLoading});
 }
 
 /// @nodoc
@@ -79,12 +85,17 @@ class __$$_OpenAiStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? openAiText = null,
+    Object? isLoading = null,
   }) {
     return _then(_$_OpenAiState(
       openAiText: null == openAiText
           ? _value.openAiText
           : openAiText // ignore: cast_nullable_to_non_nullable
               as String,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -92,15 +103,18 @@ class __$$_OpenAiStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_OpenAiState implements _OpenAiState {
-  _$_OpenAiState({this.openAiText = ''});
+  _$_OpenAiState({this.openAiText = '', this.isLoading = false});
 
   @override
   @JsonKey()
   final String openAiText;
+  @override
+  @JsonKey()
+  final bool isLoading;
 
   @override
   String toString() {
-    return 'OpenAiState(openAiText: $openAiText)';
+    return 'OpenAiState(openAiText: $openAiText, isLoading: $isLoading)';
   }
 
   @override
@@ -109,11 +123,13 @@ class _$_OpenAiState implements _OpenAiState {
         (other.runtimeType == runtimeType &&
             other is _$_OpenAiState &&
             (identical(other.openAiText, openAiText) ||
-                other.openAiText == openAiText));
+                other.openAiText == openAiText) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, openAiText);
+  int get hashCode => Object.hash(runtimeType, openAiText, isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -123,10 +139,13 @@ class _$_OpenAiState implements _OpenAiState {
 }
 
 abstract class _OpenAiState implements OpenAiState {
-  factory _OpenAiState({final String openAiText}) = _$_OpenAiState;
+  factory _OpenAiState({final String openAiText, final bool isLoading}) =
+      _$_OpenAiState;
 
   @override
   String get openAiText;
+  @override
+  bool get isLoading;
   @override
   @JsonKey(ignore: true)
   _$$_OpenAiStateCopyWith<_$_OpenAiState> get copyWith =>
